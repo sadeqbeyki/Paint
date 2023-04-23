@@ -26,28 +26,37 @@ public partial class frmPaint : Form
     private void panelDraw_MouseDown(object sender, MouseEventArgs e)
     {
 
+       
         isDrawing = true;
         startPoint = e.Location;
+
+
         endPoint = e.Location;
 
     }
 
     private void panelDraw_MouseMove(object sender, MouseEventArgs e)
     {
-        if (isDrawing)
+        if (e.Button == MouseButtons.Left)
         {
-            using (Graphics g = panelDraw.CreateGraphics())
-            {
-                // Clear previous drawings
-                g.Clear(panelDraw.BackColor);
-
-                // Draw temporary line
-                g.DrawLine(Pens.Black, startPoint, e.Location);
-
-                // Update end point
-                endPoint = e.Location;
-            }
+            startPoint = e.Location;
+            graphics.DrawLine(penA, startPoint, endPoint);
+            endPoint = e.Location;
         }
+        //if (isDrawing)
+        //{
+        //    using (Graphics g = panelDraw.CreateGraphics())
+        //    {
+        //        // Clear previous drawings
+        //        g.Clear(panelDraw.BackColor);
+
+        //        // Draw temporary line
+        //        g.DrawLine(Pens.Black, startPoint, e.Location);
+
+        //        // Update end point
+        //        endPoint = e.Location;
+        //    }
+        //}
     }
 
 
@@ -59,21 +68,18 @@ public partial class frmPaint : Form
         Graphics g = panelCanvas.CreateGraphics();
 
 
-        float m = (endPoint.Y - startPoint.Y) / (float)(endPoint.X - startPoint.X);
-        float b = startPoint.Y - m * startPoint.X;
+        //float m = (endPoint.Y - startPoint.Y) / (float)(endPoint.X - startPoint.X);
+        //float b = startPoint.Y - m * startPoint.X;
 
-        float drawX = (endPoint.X - startPoint.X);
-        float drawY = (endPoint.Y - startPoint.Y);
+        //float drawX = (endPoint.X - startPoint.X);
+        //float drawY = (endPoint.Y - startPoint.Y);
 
 
-        //int newX = (int)((panelCanvas.Width - drawX - b) / m);
-        //int newY = (int)((panelCanvas.Height - drawY - b) / m);
+        //int newX = (int)((panelCanvas.Height - b) / m);
+        //int newY = (int)((panelCanvas.Height - b));
+        //Point newEndPoint = new(newX, newY);
 
-        int newX = (int)((panelCanvas.Height - b) / m);
-        int newY = (int)((panelCanvas.Height) - drawY);
-        Point newEndPoint = new(newX, newY);
-
-        g.DrawLine(Pens.Black, startPoint, newEndPoint);
+        g.DrawLine(Pens.Black, startPoint, endPoint);
 
     }
 
