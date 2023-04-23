@@ -1,16 +1,21 @@
 
 using System.Drawing;
+using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
+using System.Reflection.Emit;
+using System.Net;
 
 namespace Paint.Canvas;
 
 public partial class frmPaint : Form
 {
-    public Point x = new();
-    public Point y = new();
-    public Pen penA = new(Color.Red, 2);
-    public Pen Eraser = new(Color.White, 10);
+    public Point startPoint = new();
+    public Point endPoint = new();
+    public Pen penA = new(Color.Black, 2);
+
     public Graphics graphics;
 
+    private bool isDrawing = false;
 
 
     public frmPaint()
@@ -20,23 +25,28 @@ public partial class frmPaint : Form
     }
     private void panelDraw_MouseDown(object sender, MouseEventArgs e)
     {
-        y = e.Location;
+
+        isDrawing = true;
+        startPoint = e.Location;
+        endPoint = e.Location;
+
     }
 
     private void panelDraw_MouseMove(object sender, MouseEventArgs e)
     {
-        if (e.Button == MouseButtons.Left)
+        if (isDrawing)
         {
-            x = e.Location;
-            graphics.DrawLine(penA, x, y);
-            y = e.Location;
-        }
+            using (Graphics g = panelDraw.CreateGraphics())
+            {
+                // Clear previous drawings
+                g.Clear(panelDraw.BackColor);
 
-        if (e.Button == MouseButtons.Right)
-        {
-            x = e.Location;
-            graphics.DrawLine(Eraser, x, y);
-            y = e.Location;
+                // Draw temporary line
+                g.DrawLine(Pens.Black, startPoint, e.Location);
+
+                // Update end point
+                endPoint = e.Location;
+            }
         }
     }
 
@@ -44,27 +54,27 @@ public partial class frmPaint : Form
 
     private void panelDraw_MouseUp(object sender, MouseEventArgs e)
     {
-        if (e.Button == MouseButtons.Left)
-        {
-            // Get the size of the rectangle to draw
-            int width = Math.Abs(x.X - e.X);
-            int height = Math.Abs(x.Y - e.Y);
+        isDrawing = false;
+        // Create graphics object for panelCanvas
+        Graphics g = panelCanvas.CreateGraphics();
 
-            // Get the top-left corner of the rectangle to draw
-            Point topLeft = new Point(Math.Min(x.X, e.X), Math.Min(x.Y, e.Y));
 
-            // Create a bitmap to draw the rectangle on
-            Bitmap bmp = new Bitmap(width, height);
+        float m = (endPoint.Y - startPoint.Y) / (float)(endPoint.X - startPoint.X);
+        float b = startPoint.Y - m * startPoint.X;
 
-            // Draw the rectangle on the bitmap
-            using (Graphics g = Graphics.FromImage(bmp))
-            {
-                g.DrawRectangle(penA, new Rectangle(0, 0, width - 1, height - 1));
-            }
+        float drawX = (endPoint.X - startPoint.X);
+        float drawY = (endPoint.Y - startPoint.Y);
 
-            // Display the bitmap on the picture box
-            pictureBoxCanvas.Image = bmp;
-        }
+
+        //int newX = (int)((panelCanvas.Width - drawX - b) / m);
+        //int newY = (int)((panelCanvas.Height - drawY - b) / m);
+
+        int newX = (int)((panelCanvas.Height - b) / m);
+        int newY = (int)((panelCanvas.Height) - drawY);
+        Point newEndPoint = new(newX, newY);
+
+        g.DrawLine(Pens.Black, startPoint, newEndPoint);
+
     }
 
     private void panelDraw_Paint(object sender, PaintEventArgs e)
@@ -90,10 +100,7 @@ public partial class frmPaint : Form
         graphics.Clear(panelDraw.BackColor);
     }
 
-    private void btnConvert_Click(object sender, EventArgs e)
-    {
 
-    }
 }
 
 

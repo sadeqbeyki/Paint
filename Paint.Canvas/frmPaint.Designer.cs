@@ -42,16 +42,13 @@
             btnRectangle = new Button();
             rbLine = new RadioButton();
             btnConvert = new Button();
-            pictureBoxCanvas = new PictureBox();
-            panelDraw.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCanvas).BeginInit();
+            label1 = new Label();
             SuspendLayout();
             // 
             // panelDraw
             // 
             panelDraw.BackColor = SystemColors.ButtonFace;
-            panelDraw.Controls.Add(pictureBoxCanvas);
-            panelDraw.Location = new Point(30, 49);
+            panelDraw.Location = new Point(30, 50);
             panelDraw.Name = "panelDraw";
             panelDraw.Size = new Size(600, 600);
             panelDraw.TabIndex = 0;
@@ -106,7 +103,7 @@
             // panelCanvas
             // 
             panelCanvas.BackColor = SystemColors.ButtonFace;
-            panelCanvas.Location = new Point(748, 49);
+            panelCanvas.Location = new Point(750, 50);
             panelCanvas.Name = "panelCanvas";
             panelCanvas.Size = new Size(600, 600);
             panelCanvas.TabIndex = 1;
@@ -186,15 +183,15 @@
             btnConvert.TabIndex = 10;
             btnConvert.Text = "Convert";
             btnConvert.UseVisualStyleBackColor = true;
-            btnConvert.Click += btnConvert_Click;
             // 
-            // pictureBoxCanvas
+            // label1
             // 
-            pictureBoxCanvas.Location = new Point(472, 240);
-            pictureBoxCanvas.Name = "pictureBoxCanvas";
-            pictureBoxCanvas.Size = new Size(430, 367);
-            pictureBoxCanvas.TabIndex = 11;
-            pictureBoxCanvas.TabStop = false;
+            label1.AutoSize = true;
+            label1.Location = new Point(649, 435);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 1;
+            label1.Text = "label1";
             // 
             // frmPaint
             // 
@@ -202,6 +199,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1384, 661);
+            Controls.Add(label1);
             Controls.Add(btnConvert);
             Controls.Add(rbLine);
             Controls.Add(btnRectangle);
@@ -218,8 +216,6 @@
             Controls.Add(panelDraw);
             Name = "frmPaint";
             Text = "CanvasPaint";
-            panelDraw.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxCanvas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -240,6 +236,6 @@
         private Button btnRectangle;
         private RadioButton rbLine;
         private Button btnConvert;
-        private PictureBox pictureBoxCanvas;
+        private Label label1;
     }
 }
