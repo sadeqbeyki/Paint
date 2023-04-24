@@ -34,15 +34,7 @@
             rbLineWidth10 = new RadioButton();
             rbLineWidth15 = new RadioButton();
             panelCanvas = new Panel();
-            btnSmooth = new Button();
             btnClear = new Button();
-            btnLine = new Button();
-            btnTriangle = new Button();
-            btnEllipse = new Button();
-            btnRectangle = new Button();
-            rbLine = new RadioButton();
-            btnConvert = new Button();
-            label1 = new Label();
             SuspendLayout();
             // 
             // panelDraw
@@ -52,14 +44,13 @@
             panelDraw.Name = "panelDraw";
             panelDraw.Size = new Size(600, 600);
             panelDraw.TabIndex = 0;
-            panelDraw.Paint += panelDraw_Paint;
             panelDraw.MouseDown += panelDraw_MouseDown;
             panelDraw.MouseMove += panelDraw_MouseMove;
             panelDraw.MouseUp += panelDraw_MouseUp;
             // 
             // btnColor
             // 
-            btnColor.Location = new Point(30, 20);
+            btnColor.Location = new Point(649, 50);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(75, 23);
             btnColor.TabIndex = 0;
@@ -107,16 +98,6 @@
             panelCanvas.Name = "panelCanvas";
             panelCanvas.Size = new Size(600, 600);
             panelCanvas.TabIndex = 1;
-            panelCanvas.Paint += panelCanvas_Paint;
-            // 
-            // btnSmooth
-            // 
-            btnSmooth.Location = new Point(649, 49);
-            btnSmooth.Name = "btnSmooth";
-            btnSmooth.Size = new Size(75, 23);
-            btnSmooth.TabIndex = 4;
-            btnSmooth.Text = "Smooth";
-            btnSmooth.UseVisualStyleBackColor = true;
             // 
             // btnClear
             // 
@@ -128,86 +109,13 @@
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
-            // btnLine
-            // 
-            btnLine.Location = new Point(649, 183);
-            btnLine.Name = "btnLine";
-            btnLine.Size = new Size(75, 23);
-            btnLine.TabIndex = 5;
-            btnLine.Text = "Line";
-            btnLine.UseVisualStyleBackColor = true;
-            // 
-            // btnTriangle
-            // 
-            btnTriangle.Location = new Point(649, 324);
-            btnTriangle.Name = "btnTriangle";
-            btnTriangle.Size = new Size(75, 23);
-            btnTriangle.TabIndex = 6;
-            btnTriangle.Text = "Triangle";
-            btnTriangle.UseVisualStyleBackColor = true;
-            // 
-            // btnEllipse
-            // 
-            btnEllipse.Location = new Point(649, 276);
-            btnEllipse.Name = "btnEllipse";
-            btnEllipse.Size = new Size(75, 23);
-            btnEllipse.TabIndex = 7;
-            btnEllipse.Text = "Ellipse";
-            btnEllipse.UseVisualStyleBackColor = true;
-            // 
-            // btnRectangle
-            // 
-            btnRectangle.Location = new Point(649, 228);
-            btnRectangle.Name = "btnRectangle";
-            btnRectangle.Size = new Size(75, 23);
-            btnRectangle.TabIndex = 8;
-            btnRectangle.Text = "Rectangle";
-            btnRectangle.UseVisualStyleBackColor = true;
-            // 
-            // rbLine
-            // 
-            rbLine.AutoSize = true;
-            rbLine.Location = new Point(662, 158);
-            rbLine.Name = "rbLine";
-            rbLine.Size = new Size(47, 19);
-            rbLine.TabIndex = 9;
-            rbLine.TabStop = true;
-            rbLine.Text = "Line";
-            rbLine.UseVisualStyleBackColor = true;
-            // 
-            // btnConvert
-            // 
-            btnConvert.Location = new Point(649, 387);
-            btnConvert.Name = "btnConvert";
-            btnConvert.Size = new Size(75, 23);
-            btnConvert.TabIndex = 10;
-            btnConvert.Text = "Convert";
-            btnConvert.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(649, 435);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
-            // 
             // frmPaint
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1384, 661);
-            Controls.Add(label1);
-            Controls.Add(btnConvert);
-            Controls.Add(rbLine);
-            Controls.Add(btnRectangle);
-            Controls.Add(btnEllipse);
-            Controls.Add(btnTriangle);
-            Controls.Add(btnLine);
             Controls.Add(btnClear);
-            Controls.Add(btnSmooth);
             Controls.Add(panelCanvas);
             Controls.Add(rbLineWidth15);
             Controls.Add(rbLineWidth10);
@@ -228,14 +136,6 @@
         private RadioButton rbLineWidth10;
         private RadioButton rbLineWidth15;
         private Panel panelCanvas;
-        private Button btnSmooth;
         private Button btnClear;
-        private Button btnLine;
-        private Button btnTriangle;
-        private Button btnEllipse;
-        private Button btnRectangle;
-        private RadioButton rbLine;
-        private Button btnConvert;
-        private Label label1;
     }
 }

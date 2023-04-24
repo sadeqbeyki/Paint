@@ -1,38 +1,42 @@
-
-using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
-using System.Windows.Forms;
-using System.Reflection.Emit;
-using System.Net;
-
 namespace Paint.Canvas;
 
 public partial class frmPaint : Form
 {
     public Point startPoint = new();
     public Point endPoint = new();
-    public Pen penA = new(Color.Black, 2);
 
-    public Graphics graphics;
+    Point xGlobal = new();
+    Point yGlobal = new();
+
+    public Pen penA = new(Color.Black, 2);
+    public Pen Eraser = new(Color.White, 10);
+
+    public Graphics graphicsPanelDraw;
+    public Graphics graphicsPanelCanvas;
 
     private bool isDrawing = false;
+    int sizeDiff = 50; //Var pixels to difference square to line 
 
 
     public frmPaint()
     {
         InitializeComponent();
-        graphics = panelDraw.CreateGraphics();
+        graphicsPanelDraw = panelDraw.CreateGraphics();
+        graphicsPanelCanvas = panelCanvas.CreateGraphics();
     }
+
+    Point upPoint = new(); //Point A for Square
+    Point downPoint = new(); //Point B for Square
     private void panelDraw_MouseDown(object sender, MouseEventArgs e)
     {
-
-       
-        isDrawing = true;
-        startPoint = e.Location;
-
-
+        if (e.Button == MouseButtons.Left)
+        {
+            isDrawing = true; //On drawing var to MouseLeave event
+        }
         endPoint = e.Location;
-
+        yGlobal = endPoint; // Y Point for draw in the MouseLeave
+        upPoint = endPoint; //Reference point for Square
+        downPoint = endPoint; //Reference point for Square
     }
 
     private void panelDraw_MouseMove(object sender, MouseEventArgs e)
@@ -40,59 +44,93 @@ public partial class frmPaint : Form
         if (e.Button == MouseButtons.Left)
         {
             startPoint = e.Location;
-            graphics.DrawLine(penA, startPoint, endPoint);
+            graphicsPanelDraw.DrawLine(penA, startPoint, endPoint);
+            endPoint = e.Location;
+
+            //Verify to decrease upPoint
+            if (startPoint.X < upPoint.X)
+            {
+                upPoint.X = startPoint.X;
+            }
+            if (startPoint.Y < upPoint.Y)
+            {
+                upPoint.Y = startPoint.Y;
+            }
+
+            //Verify to increment downPoint
+            if (startPoint.X > downPoint.X)
+            {
+                downPoint.X = startPoint.X;
+            }
+            if (startPoint.Y > downPoint.Y)
+            {
+                downPoint.Y = startPoint.Y;
+            }
+        }
+
+        if (e.Button == MouseButtons.Right)
+        {
+            startPoint = e.Location;
+            graphicsPanelDraw.DrawLine(Eraser, startPoint, endPoint);
             endPoint = e.Location;
         }
-        //if (isDrawing)
-        //{
-        //    using (Graphics g = panelDraw.CreateGraphics())
-        //    {
-        //        // Clear previous drawings
-        //        g.Clear(panelDraw.BackColor);
 
-        //        // Draw temporary line
-        //        g.DrawLine(Pens.Black, startPoint, e.Location);
-
-        //        // Update end point
-        //        endPoint = e.Location;
-        //    }
-        //}
+        if (rbLineWidth5.Checked)
+            penA.Width = 5;
+        if (rbLineWidth10.Checked)
+            penA.Width = 10;
+        if (rbLineWidth15.Checked)
+            penA.Width = 15;
     }
 
 
 
     private void panelDraw_MouseUp(object sender, MouseEventArgs e)
     {
-        isDrawing = false;
-        // Create graphics object for panelCanvas
-        Graphics g = panelCanvas.CreateGraphics();
+        xGlobal = e.Location; // X Point for draw in the MouseLeave
+
+        int XDiff = (yGlobal.X - xGlobal.X); // Difference start point and end point int width
+        int YDiff = (yGlobal.Y - xGlobal.Y); // Difference start point and end point int height
+
+        // Convert difference to positive integer
+        if (XDiff < 0)
+        {
+            XDiff *= -1;
+        }
+        if (YDiff < 0)
+        {
+            YDiff *= -1;
+        }
+
+        bool isSquare = false; // isSquare Var
+
+        // Verify start point and end point 
+        if (XDiff < sizeDiff)
+        {
+            if (YDiff < sizeDiff)
+            {
+                isSquare = true; // defines whether it is a square or not based on the start and end point
+            }
+        }
+
+        if (isDrawing == true)
+        {
+            if (isSquare)
+            {
+                //Draw Square in Panel B
+                graphicsPanelCanvas.DrawRectangle(penA, new Rectangle(upPoint, new Size(downPoint.X - upPoint.X, downPoint.Y - upPoint.Y))); //Graphics panel B
+            }
+            else
+            {
+                //Draw Line in Panel B
+                graphicsPanelCanvas.DrawLine(penA, xGlobal, yGlobal); //Graphics panel B
+            }
 
 
-        //float m = (endPoint.Y - startPoint.Y) / (float)(endPoint.X - startPoint.X);
-        //float b = startPoint.Y - m * startPoint.X;
-
-        //float drawX = (endPoint.X - startPoint.X);
-        //float drawY = (endPoint.Y - startPoint.Y);
-
-
-        //int newX = (int)((panelCanvas.Height - b) / m);
-        //int newY = (int)((panelCanvas.Height - b));
-        //Point newEndPoint = new(newX, newY);
-
-        g.DrawLine(Pens.Black, startPoint, endPoint);
-
+            isDrawing = false;
+        }
     }
 
-    private void panelDraw_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
-
-
-    private void panelCanvas_Paint(object sender, PaintEventArgs e)
-    {
-
-    }
 
     private void btnColor_Click(object sender, EventArgs e)
     {
@@ -103,7 +141,8 @@ public partial class frmPaint : Form
 
     private void btnClear_Click(object sender, EventArgs e)
     {
-        graphics.Clear(panelDraw.BackColor);
+        graphicsPanelDraw.Clear(panelDraw.BackColor);
+        graphicsPanelCanvas.Clear(panelCanvas.BackColor);
     }
 
 
