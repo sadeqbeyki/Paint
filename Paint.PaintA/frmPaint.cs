@@ -28,7 +28,7 @@ namespace Paint.PaintA
         private void panelDraw_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
+            { 
                 x = e.Location;
                 graphics.DrawLine(penA, x, y);
                 y = e.Location;
