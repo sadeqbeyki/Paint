@@ -86,6 +86,21 @@ namespace Paint.PaintD
 
         private void panelDraw_MouseUp(object sender, MouseEventArgs e)
         {
+            xGlobal = e.Location; // 
+
+            int XDiff = (yGlobal.X - xGlobal.X); // 
+            int YDiff = (yGlobal.Y - xGlobal.Y); // 
+
+            // 
+            if (XDiff < 0)
+            {
+                XDiff *= -1;
+            }
+            if (YDiff < 0)
+            {
+                YDiff *= -1;
+            }
+
             if (isDrawing)
             {
                 points.Add(e.Location);
