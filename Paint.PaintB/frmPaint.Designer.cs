@@ -40,7 +40,7 @@
             // panelResult
             // 
             panelResult.BackColor = SystemColors.ButtonFace;
-            panelResult.Location = new Point(764, 55);
+            panelResult.Location = new Point(741, 37);
             panelResult.Name = "panelResult";
             panelResult.Size = new Size(600, 600);
             panelResult.TabIndex = 3;
@@ -48,7 +48,7 @@
             // panelDraw
             // 
             panelDraw.BackColor = SystemColors.ButtonFace;
-            panelDraw.Location = new Point(44, 55);
+            panelDraw.Location = new Point(12, 37);
             panelDraw.Name = "panelDraw";
             panelDraw.Size = new Size(600, 600);
             panelDraw.TabIndex = 2;
@@ -80,7 +80,7 @@
             // 
             // btnColor
             // 
-            btnColor.Location = new Point(665, 73);
+            btnColor.Location = new Point(639, 37);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(75, 23);
             btnColor.TabIndex = 4;
@@ -100,7 +100,7 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(665, 141);
+            btnClear.Location = new Point(639, 105);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(75, 23);
             btnClear.TabIndex = 8;
@@ -112,7 +112,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1408, 711);
+            ClientSize = new Size(1384, 661);
             Controls.Add(btnClear);
             Controls.Add(rbLineWidth15);
             Controls.Add(rbLineWidth10);

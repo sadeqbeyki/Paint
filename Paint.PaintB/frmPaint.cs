@@ -13,15 +13,16 @@ public partial class frmPaint : Form
     public Graphics graphics;
     public Graphics graphicsPanelB;
 
-    frmResult result;
+    //frmResult result;
 
     public frmPaint()
     {
         InitializeComponent();
-        result = new frmResult();
-        result.Show();
-        graphicsPanelB = result.graphics;
+        //result = new frmResult();
+        //result.Show();
+        //graphicsPanelB = result.graphics;
         graphics = panelDraw.CreateGraphics();
+        graphicsPanelB = panelResult.CreateGraphics();
         panelDraw.MouseDown += panelDraw_MouseDown;
         panelDraw.MouseMove += panelDraw_MouseMove;
         panelDraw.MouseUp += panelDraw_MouseUp;
@@ -31,8 +32,8 @@ public partial class frmPaint : Form
 
     bool drawing = false; // Drawing Var
 
-    Point xGlobal = new Point();
-    Point yGlobal = new Point();
+    Point xGlobal = new();
+    Point yGlobal = new();
 
     int sizeDiff = 50; //Var pixels to difference square to line  
 
@@ -222,7 +223,7 @@ public partial class frmPaint : Form
 
     private void btnClear_Click(object sender, EventArgs e)
     {
-        graphicsPanelDraw.Clear(panelDraw.BackColor);
-        graphicsPanelCanvas.Clear(panelResult.BackColor);
+        graphics.Clear(panelDraw.BackColor);
+        graphicsPanelB.Clear(panelResult.BackColor);
     }
 }
