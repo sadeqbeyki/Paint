@@ -1,5 +1,4 @@
-﻿
-namespace projectPaint
+﻿namespace Paint.PaintA
 {
     partial class frmResult
     {
@@ -29,31 +28,29 @@ namespace projectPaint
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelResult = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
+            panelResult = new Panel();
+            SuspendLayout();
             // 
             // panelResult
             // 
-            this.panelResult.Location = new System.Drawing.Point(13, 12);
-            this.panelResult.Name = "panelResult";
-            this.panelResult.Size = new System.Drawing.Size(775, 434);
-            this.panelResult.TabIndex = 0;
+            panelResult.Location = new Point(12, 12);
+            panelResult.Name = "panelResult";
+            panelResult.Size = new Size(775, 434);
+            panelResult.TabIndex = 0;
             // 
             // frmResult
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panelResult);
-            this.Name = "frmResult";
-            this.Text = "frmResult";
-            this.Load += new System.EventHandler(this.frmResult_Load);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(panelResult);
+            Name = "frmResult";
+            Text = "frmResult";
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panelResult;
+        private Panel panelResult;
     }
 }

@@ -38,16 +38,17 @@
             // panelDraw
             // 
             panelDraw.BackColor = SystemColors.ButtonFace;
-            panelDraw.Location = new Point(30, 30);
+            panelDraw.Location = new Point(12, 33);
             panelDraw.Name = "panelDraw";
-            panelDraw.Size = new Size(800, 600);
+            panelDraw.Size = new Size(776, 405);
             panelDraw.TabIndex = 0;
             panelDraw.MouseDown += panelDraw_MouseDown;
             panelDraw.MouseMove += panelDraw_MouseMove;
+            panelDraw.MouseUp += panelDraw_MouseUp;
             // 
             // btnColor
             // 
-            btnColor.Location = new Point(872, 30);
+            btnColor.Location = new Point(713, 4);
             btnColor.Name = "btnColor";
             btnColor.Size = new Size(75, 23);
             btnColor.TabIndex = 0;
@@ -58,7 +59,7 @@
             // rbLineWidth5
             // 
             rbLineWidth5.AutoSize = true;
-            rbLineWidth5.Location = new Point(853, 140);
+            rbLineWidth5.Location = new Point(602, 6);
             rbLineWidth5.Name = "rbLineWidth5";
             rbLineWidth5.Size = new Size(91, 19);
             rbLineWidth5.TabIndex = 1;
@@ -69,7 +70,7 @@
             // rbLineWidth10
             // 
             rbLineWidth10.AutoSize = true;
-            rbLineWidth10.Location = new Point(853, 193);
+            rbLineWidth10.Location = new Point(474, 6);
             rbLineWidth10.Name = "rbLineWidth10";
             rbLineWidth10.Size = new Size(97, 19);
             rbLineWidth10.TabIndex = 2;
@@ -80,7 +81,7 @@
             // rbLineWidth15
             // 
             rbLineWidth15.AutoSize = true;
-            rbLineWidth15.Location = new Point(853, 247);
+            rbLineWidth15.Location = new Point(350, 6);
             rbLineWidth15.Name = "rbLineWidth15";
             rbLineWidth15.Size = new Size(97, 19);
             rbLineWidth15.TabIndex = 3;
@@ -88,19 +89,19 @@
             rbLineWidth15.Text = "Line Width 15";
             rbLineWidth15.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // frmPaint
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1008, 729);
+            ClientSize = new Size(800, 450);
             Controls.Add(rbLineWidth15);
             Controls.Add(rbLineWidth10);
             Controls.Add(btnColor);
             Controls.Add(rbLineWidth5);
             Controls.Add(panelDraw);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "frmPaint";
+            Text = "Paint";
             ResumeLayout(false);
             PerformLayout();
         }
